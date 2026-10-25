@@ -1,1 +1,489 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#8b1e24">
+<meta name="description" content="Descubra o menu do Sabores da Beira e faça o seu pedido pelo WhatsApp.">
+<title>Sabores da Beira | Restaurante</title>
 
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --vermelho: #8b1e24;
+  --vermelho-escuro: #641419;
+  --dourado: #e9b86b;
+  --creme: #fffaf3;
+  --texto: #292522;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--creme);
+  color: var(--texto);
+  line-height: 1.6;
+}
+
+header {
+  background: var(--vermelho);
+  color: white;
+  padding: 17px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  font-size: 21px;
+  font-weight: bold;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-pedido {
+  border: 1px solid #ffffff90;
+  padding: 8px 13px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.hero {
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 65px 20px;
+  color: white;
+  background:
+    linear-gradient(90deg, #250b0be8, #250b0b72),
+    url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=85")
+    center/cover;
+}
+
+.hero-content {
+  max-width: 700px;
+}
+
+.etiqueta {
+  color: var(--dourado);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.hero h1 {
+  font-size: clamp(36px, 7vw, 62px);
+  line-height: 1.1;
+  margin: 16px 0;
+}
+
+.hero p {
+  font-size: 17px;
+  max-width: 550px;
+  margin: 0 auto 22px;
+}
+
+.botao {
+  display: inline-block;
+  padding: 13px 21px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.botao:hover {
+  transform: translateY(-2px);
+}
+
+.botao-dourado {
+  background: var(--dourado);
+  color: #2d1b0b;
+}
+
+.botao-vermelho {
+  background: var(--vermelho);
+  color: white;
+}
+
+section {
+  padding: 55px 6%;
+}
+
+.introducao {
+  text-align: center;
+  max-width: 750px;
+  margin: auto;
+}
+
+.introducao h2,
+.titulo-seccao {
+  color: var(--vermelho);
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+.introducao p {
+  color: #625b54;
+}
+
+.linha-dourada {
+  width: 60px;
+  height: 4px;
+  background: var(--dourado);
+  margin: 16px auto 20px;
+  border-radius: 5px;
+}
+
+.menu-seccao {
+  background: #f4ece1;
+}
+
+.cabecalho-menu {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.cabecalho-menu p {
+  color: #6c6259;
+}
+
+.menu {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.prato {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px #36201412;
+  display: flex;
+  flex-direction: column;
+}
+
+.prato img {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  background: #eee;
+}
+
+.prato-conteudo {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.prato h3 {
+  color: var(--vermelho);
+  font-size: 21px;
+  margin-bottom: 8px;
+}
+
+.prato p {
+  color: #6c6259;
+  font-size: 14px;
+}
+
+.preco {
+  color: var(--vermelho);
+  font-size: 23px;
+  font-weight: bold;
+  margin: 14px 0;
+}
+
+.prato .botao {
+  text-align: center;
+  margin-top: auto;
+}
+
+.vantagens {
+  max-width: 1000px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  text-align: center;
+}
+
+.vantagem {
+  background: white;
+  border-radius: 10px;
+  padding: 25px 15px;
+  box-shadow: 0 3px 15px #00000008;
+}
+
+.vantagem .icone {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.vantagem h3 {
+  color: var(--vermelho);
+  margin-bottom: 7px;
+}
+
+.vantagem p {
+  color: #6c6259;
+  font-size: 14px;
+}
+
+.contacto {
+  background: var(--vermelho);
+  color: white;
+  text-align: center;
+}
+
+.contacto h2 {
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+.contacto p {
+  max-width: 550px;
+  margin: 0 auto 18px;
+}
+
+.contacto .botao {
+  background: var(--dourado);
+  color: #2d1b0b;
+}
+
+footer {
+  background: #211a18;
+  color: white;
+  padding: 28px 15px;
+  text-align: center;
+}
+
+footer p {
+  color: #d2c5bd;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+.whatsapp-flutuante {
+  position: fixed;
+  bottom: 20px;
+  right: 18px;
+  z-index: 10;
+  background: #168b50;
+  color: white;
+  padding: 13px 17px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 4px 15px #0003;
+}
+
+@media (max-width: 500px) {
+  header {
+    padding: 14px;
+  }
+
+  .logo {
+    font-size: 17px;
+  }
+
+  .nav-pedido {
+    font-size: 12px;
+    padding: 7px 9px;
+  }
+
+  .hero {
+    min-height: 370px;
+  }
+
+  section {
+    padding: 42px 18px;
+  }
+
+  .prato img {
+    height: 210px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a class="logo" href="#inicio">🍽️ Sabores da Beira</a>
+  <a class="nav-pedido" href="#menu">Ver menu ↓</a>
+</header>
+
+<main>
+
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <span class="etiqueta">Sabor que conquista</span>
+    <h1>Uma experiência deliciosa espera por si.</h1>
+    <p>Descubra os nossos pratos, escolha o seu favorito e entre em contacto connosco para fazer o seu pedido.</p>
+    <a href="#menu" class="botao botao-dourado">Explorar o menu</a>
+  </div>
+</section>
+
+<section>
+  <div class="introducao">
+    <h2>Bem-vindo ao Sabores da Beira</h2>
+    <div class="linha-dourada"></div>
+    <p>Uma demonstração de restaurante criada para apresentar pratos, preços e facilitar os pedidos através do WhatsApp. Descubra as nossas sugestões!</p>
+  </div>
+</section>
+
+<section class="menu-seccao" id="menu">
+  <div class="cabecalho-menu">
+    <h2 class="titulo-seccao">O Nosso Menu</h2>
+    <div class="linha-dourada"></div>
+    <p>Escolha o prato que mais lhe agrada.</p>
+  </div>
+
+  <div class="menu">
+
+    <article class="prato">
+      <img
+        src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80"
+        alt="Frango grelhado"
+        loading="lazy">
+      <div class="prato-conteudo">
+        <h3>🍗 Frango Grelhado</h3>
+        <p>Frango grelhado acompanhado de batatas fritas.</p>
+        <div class="preco">450 MT</div>
+        <a class="botao botao-vermelho pedido" data-prato="Frango Grelhado" data-preco="450 MT" href="#">Pedir este prato</a>
+      </div>
+    </article>
+
+    <article class="prato">
+      <img
+        src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
+        alt="Hambúrguer completo"
+        loading="lazy">
+      <div class="prato-conteudo">
+        <h3>🍔 Hambúrguer Completo</h3>
+        <p>Hambúrguer com queijo, alface, tomate e batatas fritas.</p>
+        <div class="preco">350 MT</div>
+        <a class="botao botao-vermelho pedido" data-prato="Hambúrguer Completo" data-preco="350 MT" href="#">Pedir este prato</a>
+      </div>
+    </article>
+
+    <article class="prato">
+      <img
+        src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80"
+        alt="Pizza especial"
+        loading="lazy">
+      <div class="prato-conteudo">
+        <h3>🍕 Pizza Especial</h3>
+        <p>Pizza com queijo, tomate e ingredientes saborosos.</p>
+        <div class="preco">500 MT</div>
+        <a class="botao botao-vermelho pedido" data-prato="Pizza Especial" data-preco="500 MT" href="#">Pedir este prato</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section>
+  <div class="cabecalho-menu">
+    <h2 class="titulo-seccao">Uma experiência simples</h2>
+    <div class="linha-dourada"></div>
+  </div>
+
+  <div class="vantagens">
+    <div class="vantagem">
+      <div class="icone">📖</div>
+      <h3>Menu acessível</h3>
+      <p>Consulte os pratos e os respectivos preços num só lugar.</p>
+    </div>
+
+    <div class="vantagem">
+      <div class="icone">📱</div>
+      <h3>Contacto directo</h3>
+      <p>Entre em contacto através do WhatsApp.</p>
+    </div>
+
+    <div class="vantagem">
+      <div class="icone">🍽️</div>
+      <h3>Escolha fácil</h3>
+      <p>Seleccione o prato que deseja antes de enviar a mensagem.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contacto" id="contacto">
+  <h2>Já escolheu o seu prato?</h2>
+  <p>Entre em contacto pelo WhatsApp para consultar o menu e conversar sobre o seu pedido.</p>
+  <a class="botao" id="botao-whatsapp" href="#">💬 Contactar pelo WhatsApp</a>
+</section>
+
+</main>
+
+<footer>
+  <h3>🍽️ Sabores da Beira</h3>
+  <p>Uma demonstração de site para restaurante.</p>
+  <p>Beira, Moçambique</p>
+  <p>© <span id="ano"></span> Sabores da Beira</p>
+</footer>
+
+<a class="whatsapp-flutuante" id="whatsapp-flutuante" href="#" aria-label="Contactar pelo WhatsApp">
+  WhatsApp 💬
+</a>
+
+<script>
+(function () {
+  const numero = "258858829688";
+
+  function linkWhatsApp(mensagem) {
+    return "https://wa.me/" + numero +
+      "?text=" + encodeURIComponent(mensagem);
+  }
+
+  document.querySelectorAll(".pedido").forEach(function (botao) {
+    const prato = botao.dataset.prato;
+    const preco = botao.dataset.preco;
+
+    botao.href = linkWhatsApp(
+      "Olá! Gostaria de saber mais sobre este prato: " +
+      prato + " (" + preco + ")."
+    );
+    botao.target = "_blank";
+    botao.rel = "noopener noreferrer";
+  });
+
+  const mensagemGeral =
+    "Olá! Visitei o site Sabores da Beira e gostaria de conhecer melhor o menu.";
+
+  ["botao-whatsapp", "whatsapp-flutuante"].forEach(function (id) {
+    const botao = document.getElementById(id);
+    botao.href = linkWhatsApp(mensagemGeral);
+    botao.target = "_blank";
+    botao.rel = "noopener noreferrer";
+  });
+
+  document.getElementById("ano").textContent =
+    new Date().getFullYear();
+})();
+</script>
+
+</body>
+  </html>
