@@ -3,40 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#801c27">
-<meta name="description" content="Descubra o menu do Sabores da Beira, escolha os seus pratos favoritos e prepare o seu pedido pelo WhatsApp.">
-<title>Sabores da Beira | Experiência Gastronómica</title>
+<meta name="theme-color" content="#801e2c">
+<meta name="description" content="Demonstração de restaurante com menu digital, carrinho e pedidos pelo WhatsApp.">
+<title>Sabores da Beira | Menu Digital</title>
 
 <link rel="preconnect" href="https://images.unsplash.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --red: #801c27;
-  --red-dark: #350c11;
-  --red-light: #a82d39;
+  --red: #801e2c;
+  --red-dark: #461116;
   --gold: #efc477;
-  --cream: #fffaf3;
-  --paper: #f4ebdf;
-  --text: #302723;
-  --muted: #786d65;
-  --white: #ffffff;
-  --green: #168b50;
-  --radius: 20px;
-  --shadow: 0 12px 35px rgba(43, 20, 12, .09);
+  --cream: #fff9f1;
+  --paper: #f2e8d9;
+  --text: #302522;
+  --muted: #82766e;
+  --white: #fff;
+  --shadow: 0 14px 40px rgba(67, 32, 25, .09);
+  --radius: 24px;
 }
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 90px;
+  scroll-padding-top: 100px;
 }
 
 body {
@@ -47,14 +45,19 @@ body {
   overflow-x: hidden;
 }
 
-button,
-input {
+button, input {
   font: inherit;
 }
 
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 4px;
 }
 
 a {
@@ -62,283 +65,212 @@ a {
   text-decoration: none;
 }
 
-button {
-  cursor: pointer;
-}
-
 img {
-  max-width: 100%;
+  display: block;
+  width: 100%;
 }
-
-.container {
-  width: min(1160px, 92%);
-  margin-inline: auto;
-}
-
-/* BARRA SUPERIOR */
 
 .demo-bar {
-  padding: 8px 12px;
-  background: #251916;
+  background: #251b18;
   color: var(--gold);
   text-align: center;
+  padding: 9px 14px;
   font-size: 11px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  letter-spacing: .7px;
 }
 
-/* CABEÇALHO */
-
-header {
+.header {
   position: sticky;
   top: 0;
-  z-index: 100;
-  background: rgba(128, 28, 39, .97);
+  z-index: 50;
+  background: rgba(128, 30, 44, .97);
   color: white;
-  backdrop-filter: blur(14px);
-  box-shadow: 0 5px 25px rgba(0, 0, 0, .1);
+  box-shadow: 0 5px 25px rgba(0,0,0,.12);
+  backdrop-filter: blur(15px);
 }
 
-.navbar {
+.nav {
+  max-width: 1250px;
+  margin: auto;
   min-height: 76px;
+  padding: 12px 24px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  gap: 18px;
+  gap: 15px;
 }
 
-.logo {
+.brand {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 18px;
+  gap: 11px;
+  font-size: 19px;
   font-weight: 800;
-  white-space: nowrap;
 }
 
-.logo-icon {
-  width: 42px;
-  height: 42px;
+.brand-icon {
+  width: 43px;
+  height: 43px;
+  border: 1px solid rgba(255,255,255,.3);
+  background: rgba(255,255,255,.1);
+  border-radius: 14px;
   display: grid;
   place-items: center;
-  background: rgba(255,255,255,.12);
-  border: 1px solid rgba(255,255,255,.15);
-  border-radius: 14px;
-  font-size: 21px;
+  font-size: 23px;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 23px;
-}
-
-.nav-links a {
-  font-size: 13px;
-  font-weight: 700;
-  opacity: .9;
-  transition: color .25s, transform .25s;
+  gap: 22px;
+  font-weight: 600;
 }
 
 .nav-links a:hover {
   color: var(--gold);
-  transform: translateY(-2px);
 }
 
-.cart-button {
+.cart-nav {
   display: flex;
   align-items: center;
   gap: 9px;
-  border: 1px solid rgba(255,255,255,.3);
+  border: 1px solid rgba(255,255,255,.4);
   background: rgba(255,255,255,.08);
   color: white;
-  border-radius: 30px;
-  padding: 10px 15px;
+  padding: 9px 13px;
+  border-radius: 40px;
   font-weight: 700;
-  transition: background .25s, transform .25s;
-}
-
-.cart-button:hover {
-  background: rgba(255,255,255,.17);
-  transform: scale(1.03);
 }
 
 .cart-count {
-  width: 25px;
-  height: 25px;
-  display: grid;
+  display: inline-grid;
   place-items: center;
+  width: 28px;
+  height: 28px;
   background: var(--gold);
   color: var(--red-dark);
   border-radius: 50%;
-  font-size: 12px;
-  font-weight: 800;
 }
-
-/* HERO */
 
 .hero {
   position: relative;
-  min-height: 660px;
+  min-height: 590px;
   display: grid;
-  align-items: center;
+  place-items: center;
+  padding: 80px 24px 110px;
   overflow: hidden;
   color: white;
+  text-align: center;
   background:
-    linear-gradient(90deg,
-      rgba(36, 7, 11, .94),
-      rgba(36, 7, 11, .72),
-      rgba(36, 7, 11, .35)),
-    url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1800&q=85")
-    center/cover no-repeat;
-}
-
-.hero::before,
-.hero::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
+    linear-gradient(115deg, rgba(38,5,9,.92), rgba(65,12,17,.76)),
+    url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1800&q=85")
+    center/cover;
 }
 
 .hero::before {
-  width: 330px;
-  height: 330px;
-  border: 1px solid rgba(239,196,119,.2);
-  top: -120px;
-  right: -90px;
-  animation: orbit 18s linear infinite;
+  content: "";
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border: 1px solid rgba(239,196,119,.17);
+  border-radius: 50%;
+  top: -190px;
+  right: -80px;
+  animation: float 9s ease-in-out infinite;
 }
 
-.hero::after {
-  width: 230px;
-  height: 230px;
-  background: rgba(239,196,119,.06);
-  bottom: -110px;
-  left: -70px;
-  animation: float 7s ease-in-out infinite;
-}
-
-.hero-inner {
-  position: relative;
-  z-index: 2;
+.hero-content {
   max-width: 850px;
-  padding-block: 95px 125px;
-  text-align: center;
-  margin-inline: auto;
+  position: relative;
+  z-index: 1;
+  animation: heroEnter 1s ease both;
 }
 
 .eyebrow {
-  display: inline-block;
   color: var(--gold);
   font-size: 12px;
-  font-weight: 800;
   letter-spacing: 5px;
+  font-weight: 800;
   text-transform: uppercase;
-  animation: fadeUp .8s both;
+  margin-bottom: 20px;
 }
 
 .hero h1 {
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(42px, 7.5vw, 78px);
+  font-size: clamp(42px, 7vw, 76px);
   line-height: 1.08;
-  letter-spacing: -1.8px;
-  margin: 24px 0;
-  animation: fadeUp .9s .1s both;
+  margin-bottom: 23px;
 }
 
 .hero h1 em {
   color: var(--gold);
-  font-weight: 700;
 }
 
 .hero p {
   max-width: 640px;
   margin: 0 auto 30px;
-  font-size: clamp(15px, 2vw, 19px);
-  color: rgba(255,255,255,.87);
-  animation: fadeUp .9s .2s both;
+  color: rgba(255,255,255,.88);
+  font-size: 17px;
 }
 
 .hero-actions {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
-  animation: fadeUp .9s .3s both;
+  flex-wrap: wrap;
+  gap: 13px;
 }
 
 .btn {
-  position: relative;
   display: inline-flex;
-  justify-content: center;
   align-items: center;
-  gap: 9px;
-  min-height: 49px;
-  padding: 13px 22px;
-  border: 0;
-  border-radius: 12px;
-  font-size: 14px;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 21px;
+  border-radius: 15px;
+  border: 1px solid transparent;
   font-weight: 800;
-  transition:
-    transform .25s,
-    box-shadow .25s,
-    background .25s;
+  transition: transform .25s, box-shadow .25s, background .25s;
 }
 
 .btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0,0,0,.17);
-}
-
-.btn:active {
-  transform: scale(.97);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,.17);
 }
 
 .btn-gold {
   background: var(--gold);
-  color: #321b0e;
+  color: #3e2115;
 }
 
 .btn-outline {
-  border: 1px solid rgba(255,255,255,.4);
-  background: rgba(255,255,255,.07);
+  border-color: rgba(255,255,255,.45);
   color: white;
-  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,.06);
 }
 
 .hero-note {
-  display: block;
-  margin-top: 25px;
-  color: rgba(255,255,255,.7);
-  font-size: 12px;
+  font-size: 12px !important;
+  margin-top: 19px !important;
+  margin-bottom: 0 !important;
 }
 
-/* BARRA DE VANTAGENS */
-
-.benefit-strip {
+.benefits {
+  max-width: 1080px;
+  width: calc(100% - 36px);
+  margin: -48px auto 0;
   position: relative;
-  z-index: 5;
-  margin-top: -50px;
-}
-
-.benefit-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  z-index: 3;
   background: white;
   border-radius: 23px;
   box-shadow: var(--shadow);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   overflow: hidden;
 }
 
 .benefit {
-  padding: 24px 15px;
   text-align: center;
-  transition: background .3s;
-}
-
-.benefit:hover {
-  background: #fff4df;
+  padding: 24px 12px;
 }
 
 .benefit strong {
@@ -348,119 +280,79 @@ header {
 }
 
 .benefit span {
-  display: block;
   color: var(--muted);
   font-size: 12px;
 }
 
-/* SECÇÕES */
-
-section {
-  padding: 85px 0;
+.section {
+  max-width: 1250px;
+  margin: auto;
+  padding: 95px 24px;
 }
 
 .section-heading {
-  max-width: 720px;
-  margin: 0 auto 38px;
   text-align: center;
+  max-width: 680px;
+  margin: 0 auto 36px;
 }
 
-.kicker {
+.section-heading .eyebrow {
   color: var(--red);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 3px;
-  text-transform: uppercase;
+  margin-bottom: 10px;
 }
 
 .section-heading h2 {
-  margin-top: 10px;
   font-family: "Playfair Display", Georgia, serif;
   color: var(--red);
-  font-size: clamp(30px, 5vw, 46px);
+  font-size: clamp(32px, 5vw, 46px);
   line-height: 1.2;
+  margin-bottom: 12px;
 }
 
 .section-heading p {
   color: var(--muted);
-  font-size: 14px;
-  margin-top: 13px;
 }
-
-.gold-line {
-  width: 60px;
-  height: 4px;
-  margin: 17px auto;
-  border-radius: 10px;
-  background: var(--gold);
-}
-
-/* INTRODUÇÃO */
-
-.intro {
-  padding-bottom: 65px;
-}
-
-.intro-box {
-  max-width: 800px;
-  margin: auto;
-  text-align: center;
-}
-
-.intro-box h2 {
-  color: var(--red);
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(27px, 5vw, 39px);
-  margin-bottom: 15px;
-}
-
-.intro-box p {
-  color: var(--muted);
-  font-size: 15px;
-}
-
-/* MENU */
 
 .menu-section {
   background: var(--paper);
+  max-width: none;
+}
+
+.menu-inner {
+  max-width: 1250px;
+  margin: auto;
 }
 
 .menu-tools {
-  max-width: 900px;
-  margin: 0 auto 32px;
+  margin-bottom: 30px;
+}
+
+.search-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 17px;
 }
 
 .search-box {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 5px 17px;
-  border: 1px solid #e8ded2;
-  border-radius: 50px;
-  background: white;
-  box-shadow: 0 4px 15px rgba(0,0,0,.025);
-  transition: box-shadow .25s, border-color .25s;
-}
-
-.search-box:focus-within {
-  border-color: var(--gold);
-  box-shadow: 0 0 0 4px rgba(239,196,119,.2);
-}
-
-.search-box span {
-  color: var(--red);
-  font-size: 20px;
-}
-
-.search-box input {
   width: 100%;
-  min-width: 0;
-  height: 45px;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  color: var(--text);
-  font-size: 14px;
+  border: 1px solid #e4d9cb;
+  background: white;
+  padding: 15px 19px;
+  border-radius: 40px;
+  outline: none;
+  transition: box-shadow .2s, border .2s;
+}
+
+.search-box:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 0 4px rgba(128,30,44,.08);
+}
+
+.result-count {
+  white-space: nowrap;
+  color: var(--muted);
+  font-size: 12px;
 }
 
 .filters {
@@ -468,495 +360,323 @@ section {
   flex-wrap: wrap;
   justify-content: center;
   gap: 9px;
-  margin-top: 18px;
 }
 
-.filter {
+.filter-btn {
   padding: 10px 15px;
-  border: 1px solid #e4d8ca;
-  border-radius: 30px;
   background: white;
-  color: #5f5148;
-  font-size: 11px;
-  font-weight: 800;
-  transition: all .25s;
+  color: var(--text);
+  border: 1px solid #e7dccc;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 700;
+  transition: all .2s;
 }
 
-.filter:hover,
-.filter.active {
+.filter-btn:hover,
+.filter-btn.active {
   background: var(--red);
   border-color: var(--red);
   color: white;
   transform: translateY(-2px);
 }
 
-.result-count {
-  margin-top: 14px;
-  color: var(--muted);
-  text-align: center;
-  font-size: 12px;
-}
-
-/* CARTÕES DOS PRODUTOS */
-
-.products {
+.product-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0,1fr));
   gap: 24px;
 }
 
-.product {
+.product-card {
+  background: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 6px 22px rgba(53,28,19,.05);
+  border: 1px solid rgba(128,30,44,.05);
   display: flex;
   flex-direction: column;
   min-width: 0;
-  overflow: hidden;
-  background: white;
-  border: 1px solid rgba(95,65,40,.06);
-  border-radius: var(--radius);
-  box-shadow: 0 6px 24px rgba(46,24,10,.045);
-  transition:
-    transform .35s,
-    box-shadow .35s,
-    border-color .35s;
+  transition: transform .35s, box-shadow .35s;
+  animation: cardEnter .55s ease both;
 }
 
-.product:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 45px rgba(46,24,10,.12);
-  border-color: rgba(128,28,39,.15);
+.product-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 20px 42px rgba(53,28,19,.13);
+}
+
+.product-image-wrap {
+  position: relative;
+  height: 225px;
+  overflow: hidden;
+  background: #e6d9c8;
 }
 
 .product-image {
-  position: relative;
-  height: 220px;
-  overflow: hidden;
-  background: #e9dfd3;
-}
-
-.product-image img {
   width: 100%;
   height: 100%;
-  display: block;
   object-fit: cover;
   transition: transform .65s cubic-bezier(.2,.7,.2,1);
 }
 
-.product:hover .product-image img {
-  transform: scale(1.09);
+.product-card:hover .product-image {
+  transform: scale(1.07);
 }
 
-.product-tag {
+.product-image-wrap::after {
+  content: "";
   position: absolute;
-  top: 13px;
+  inset: 50% 0 0;
+  background: linear-gradient(transparent, rgba(0,0,0,.13));
+  pointer-events: none;
+}
+
+.badge {
+  position: absolute;
+  z-index: 2;
   left: 13px;
-  padding: 6px 10px;
-  background: rgba(255,250,243,.95);
+  top: 13px;
+  background: var(--cream);
   color: var(--red);
-  border-radius: 20px;
-  font-size: 10px;
+  padding: 6px 12px;
+  border-radius: 25px;
+  font-size: 11px;
   font-weight: 800;
-  box-shadow: 0 4px 15px rgba(0,0,0,.08);
+  box-shadow: 0 3px 12px rgba(0,0,0,.08);
 }
 
-.product-body {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
+.product-info {
   padding: 19px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
-.product h3 {
+.product-title {
   color: var(--red);
-  font-size: 17px;
+  font-size: 20px;
   line-height: 1.35;
+  margin-bottom: 9px;
 }
 
 .product-description {
-  min-height: 45px;
-  margin-top: 8px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 14px;
+  min-height: 46px;
+  margin-bottom: 19px;
 }
 
 .product-bottom {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 8px;
-  margin-top: 17px;
-  margin-bottom: 16px;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  margin-bottom: 14px;
 }
 
-.price {
-  color: var(--red);
-  font-size: 21px;
+.product-price {
+  font-size: 24px;
   font-weight: 800;
+  color: var(--red);
 }
 
-.currency {
-  font-size: 12px;
+.product-price small {
+  font-size: 13px;
 }
 
 .add-btn {
-  width: 43px;
-  height: 43px;
-  flex: 0 0 43px;
-  display: grid;
-  place-items: center;
+  width: 47px;
+  height: 47px;
   border: 0;
-  border-radius: 13px;
   background: var(--red);
   color: white;
-  font-size: 25px;
-  transition: transform .25s, background .25s;
+  border-radius: 15px;
+  font-size: 27px;
+  font-weight: 500;
+  transition: transform .2s, background .2s;
 }
 
 .add-btn:hover {
   background: var(--red-dark);
-  transform: rotate(5deg) scale(1.08);
+  transform: rotate(90deg) scale(1.05);
 }
 
-.product .btn {
+.add-full {
   width: 100%;
-  min-height: 44px;
-  padding: 11px;
-  border-radius: 10px;
-  font-size: 12px;
+  border: 0;
+  padding: 13px;
+  background: var(--gold);
+  color: #3d2417;
+  border-radius: 13px;
+  font-weight: 800;
+  transition: background .2s, transform .2s;
 }
 
-.no-results {
+.add-full:hover {
+  background: #e5b45d;
+  transform: translateY(-2px);
+}
+
+.empty-state {
   display: none;
-  padding: 35px 15px;
-  color: var(--muted);
   text-align: center;
-  grid-column: 1 / -1;
+  padding: 40px 10px;
+  color: var(--muted);
 }
 
-/* SOBRE */
-
-.about {
+.location-section {
   background: var(--cream);
 }
 
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 55px;
-}
-
-.about-image {
-  position: relative;
-  min-height: 400px;
-}
-
-.about-image img {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-  border-radius: 25px;
-  box-shadow: var(--shadow);
-}
-
-.about-stamp {
-  position: absolute;
-  right: -15px;
-  bottom: 25px;
-  max-width: 180px;
-  padding: 20px;
-  background: var(--gold);
-  color: var(--red-dark);
-  border-radius: 18px;
-  box-shadow: var(--shadow);
-  animation: float 5s ease-in-out infinite;
-}
-
-.about-stamp strong {
-  display: block;
-  font-size: 16px;
-}
-
-.about-stamp span {
-  font-size: 11px;
-}
-
-.about-text .kicker {
-  display: block;
-  margin-bottom: 12px;
-}
-
-.about-text h2 {
-  color: var(--red);
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(30px, 4vw, 43px);
-  line-height: 1.2;
-  margin-bottom: 18px;
-}
-
-.about-text p {
-  color: var(--muted);
-  margin-bottom: 17px;
-  font-size: 14px;
-}
-
-.about-list {
-  display: grid;
-  gap: 12px;
-  margin-top: 23px;
-}
-
-.about-list div {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.check {
-  width: 28px;
-  height: 28px;
-  flex: 0 0 28px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: #f7e8cc;
-  color: var(--red);
-}
-
-/* VANTAGENS */
-
-.features {
-  background: #f5ece1;
-}
-
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-.feature {
-  padding: 30px 22px;
-  background: white;
-  border: 1px solid rgba(128,28,39,.04);
-  border-radius: 18px;
-  text-align: center;
-  transition: transform .3s, box-shadow .3s;
-}
-
-.feature:hover {
-  transform: translateY(-7px);
-  box-shadow: var(--shadow);
-}
-
-.feature-icon {
-  width: 62px;
-  height: 62px;
-  display: grid;
-  place-items: center;
-  margin: 0 auto 15px;
-  border-radius: 19px;
-  background: #fff0d5;
-  font-size: 28px;
-  transition: transform .4s;
-}
-
-.feature:hover .feature-icon {
-  transform: rotate(-8deg) scale(1.08);
-}
-
-.feature h3 {
-  color: var(--red);
-  font-size: 16px;
-  margin-bottom: 9px;
-}
-
-.feature p {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-/* LOCALIZAÇÃO */
-
-.location {
-  background: white;
-}
-
 .location-card {
+  max-width: 920px;
+  margin: auto;
   display: grid;
   grid-template-columns: .9fr 1.1fr;
+  background: white;
+  border-radius: 28px;
   overflow: hidden;
-  background: var(--paper);
-  border-radius: 25px;
   box-shadow: var(--shadow);
 }
 
 .location-visual {
-  min-height: 290px;
-  display: grid;
-  place-items: center;
+  min-height: 300px;
   background:
-    linear-gradient(rgba(53,12,17,.78), rgba(53,12,17,.85)),
+    linear-gradient(rgba(70,17,22,.55), rgba(70,17,22,.78)),
     url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80")
     center/cover;
+  display: grid;
+  place-items: center;
   color: white;
-  text-align: center;
-  padding: 30px;
-}
-
-.location-pin {
-  font-size: 53px;
-  animation: float 4s ease-in-out infinite;
-}
-
-.location-visual h3 {
-  margin-top: 10px;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 28px;
-}
-
-.location-visual p {
-  color: rgba(255,255,255,.8);
-  font-size: 13px;
+  font-size: 65px;
 }
 
 .location-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   padding: 35px;
+  align-self: center;
 }
 
 .location-info h3 {
   color: var(--red);
-  font-size: 23px;
+  font-size: 26px;
   margin-bottom: 12px;
 }
 
 .location-info p {
   color: var(--muted);
-  font-size: 14px;
   margin-bottom: 12px;
 }
 
-.location-info .btn {
-  align-self: flex-start;
-  margin-top: 12px;
-}
-
-/* CONTACTO */
-
-.contact {
-  position: relative;
-  overflow: hidden;
-  background: var(--red);
-  color: white;
-  text-align: center;
-}
-
-.contact::before {
-  content: "";
-  position: absolute;
-  width: 350px;
-  height: 350px;
-  left: -170px;
-  top: -150px;
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 50%;
-}
-
-.contact::after {
-  content: "";
-  position: absolute;
-  width: 250px;
-  height: 250px;
-  right: -120px;
-  bottom: -120px;
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 50%;
-}
-
-.contact .container {
-  position: relative;
-  z-index: 1;
-}
-
-.contact .kicker {
-  color: var(--gold);
-}
-
-.contact h2 {
-  margin-top: 12px;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(32px, 5vw, 48px);
-  line-height: 1.2;
-}
-
-.contact p {
-  max-width: 620px;
-  margin: 18px auto 27px;
-  color: rgba(255,255,255,.83);
-  font-size: 14px;
-}
-
-.contact .btn {
-  background: var(--gold);
-  color: var(--red-dark);
-}
-
-/* RODAPÉ */
-
-footer {
-  padding: 45px 0 25px;
-  background: #211715;
-  color: white;
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr 1fr;
-  gap: 35px;
-  padding-bottom: 30px;
-}
-
-.footer-title {
-  font-size: 18px;
+.location-pin {
+  color: var(--red);
   font-weight: 800;
-  margin-bottom: 12px;
+  margin-bottom: 18px;
 }
 
-.footer-grid p,
-.footer-grid a {
-  display: block;
-  color: #cbbdb5;
-  font-size: 12px;
-  margin-bottom: 8px;
-}
-
-.footer-grid a:hover {
-  color: var(--gold);
-}
-
-.footer-bottom {
-  border-top: 1px solid rgba(255,255,255,.12);
-  padding-top: 20px;
+.about-section {
+  background: #4a151a;
+  color: white;
   text-align: center;
-  color: #b9aaa2;
-  font-size: 11px;
+  padding: 75px 24px;
 }
 
-/* CARRINHO */
+.about-inner {
+  max-width: 760px;
+  margin: auto;
+}
+
+.about-section h2 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(30px, 5vw, 43px);
+  margin-bottom: 16px;
+}
+
+.about-section p {
+  color: rgba(255,255,255,.8);
+}
+
+.about-points {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.about-points span {
+  border: 1px solid rgba(255,255,255,.22);
+  padding: 9px 14px;
+  border-radius: 25px;
+  font-size: 13px;
+}
+
+.footer {
+  background: #251b18;
+  color: white;
+  text-align: center;
+  padding: 28px 20px;
+}
+
+.footer p {
+  color: rgba(255,255,255,.65);
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.whatsapp-float {
+  position: fixed;
+  z-index: 60;
+  right: 20px;
+  bottom: 20px;
+  border: 0;
+  border-radius: 40px;
+  padding: 15px 19px;
+  background: #168b56;
+  color: white;
+  font-weight: 800;
+  box-shadow: 0 10px 30px rgba(0,0,0,.2);
+  animation: float 4s ease-in-out infinite;
+  transition: transform .2s;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.05);
+}
+
+.toast {
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+  bottom: 85px;
+  transform: translate(-50%, 20px);
+  opacity: 0;
+  pointer-events: none;
+  background: #251b18;
+  color: white;
+  padding: 13px 19px;
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  transition: opacity .25s, transform .25s;
+  text-align: center;
+  width: max-content;
+  max-width: calc(100% - 35px);
+  font-size: 13px;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
 
 .cart-overlay {
   position: fixed;
+  z-index: 80;
   inset: 0;
-  z-index: 200;
-  background: rgba(16,8,7,.65);
+  background: rgba(20,10,10,.58);
   opacity: 0;
   visibility: hidden;
-  transition: .3s;
-  backdrop-filter: blur(4px);
+  transition: opacity .25s, visibility .25s;
 }
 
 .cart-overlay.open {
@@ -966,17 +686,17 @@ footer {
 
 .cart-panel {
   position: fixed;
-  z-index: 201;
+  z-index: 81;
   top: 0;
   right: 0;
-  width: min(430px, 100%);
+  width: min(440px, 100%);
   height: 100%;
+  background: var(--cream);
+  box-shadow: -15px 0 50px rgba(0,0,0,.16);
+  transform: translateX(105%);
+  transition: transform .35s cubic-bezier(.2,.8,.2,1);
   display: flex;
   flex-direction: column;
-  background: var(--cream);
-  box-shadow: -10px 0 50px rgba(0,0,0,.2);
-  transform: translateX(105%);
-  transition: transform .4s cubic-bezier(.2,.7,.2,1);
 }
 
 .cart-panel.open {
@@ -984,193 +704,122 @@ footer {
 }
 
 .cart-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 22px;
   background: var(--red);
   color: white;
+  padding: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .cart-header h2 {
   font-family: "Playfair Display", Georgia, serif;
-  font-size: 23px;
 }
 
 .close-cart {
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(255,255,255,.25);
-  border-radius: 50%;
-  background: rgba(255,255,255,.1);
+  border: 0;
+  background: rgba(255,255,255,.15);
   color: white;
+  border-radius: 50%;
+  width: 39px;
+  height: 39px;
   font-size: 24px;
 }
 
 .cart-items {
-  flex: 1;
+  padding: 18px;
   overflow-y: auto;
-  padding: 20px;
+  flex: 1;
 }
 
 .cart-empty {
-  padding: 60px 15px;
   text-align: center;
   color: var(--muted);
-}
-
-.cart-empty span {
-  display: block;
-  font-size: 44px;
-  margin-bottom: 15px;
+  padding: 60px 15px;
 }
 
 .cart-item {
   display: grid;
-  grid-template-columns: 70px 1fr;
-  gap: 13px;
-  padding: 14px 0;
-  border-bottom: 1px solid #e9ded1;
-  animation: fadeUp .3s both;
-}
-
-.cart-item img {
-  width: 70px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 12px;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  border-bottom: 1px solid #eadfd1;
+  padding: 15px 0;
 }
 
 .cart-item h4 {
   color: var(--red);
-  font-size: 13px;
   line-height: 1.4;
 }
 
-.cart-item-price {
-  margin-top: 4px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.quantity-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 9px;
-}
-
-.quantity-row button {
-  width: 29px;
-  height: 29px;
-  border: 1px solid #e4d5c6;
-  border-radius: 8px;
-  background: white;
-  color: var(--red);
-  font-weight: 800;
-}
-
-.quantity-row .remove-item {
-  margin-left: auto;
-  width: auto;
-  padding: 0 8px;
-  color: #9c3333;
-  font-size: 11px;
-}
-
-.cart-footer {
-  padding: 20px;
-  background: white;
-  border-top: 1px solid #eee3d8;
-}
-
-.total-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 17px;
-}
-
-.total-row span {
-  color: var(--muted);
+.cart-item p {
   font-size: 13px;
-}
-
-.total-row strong {
-  color: var(--red);
-  font-size: 25px;
-}
-
-.cart-footer .btn {
-  width: 100%;
-  margin-bottom: 9px;
-}
-
-.cart-footer small {
-  display: block;
   color: var(--muted);
-  text-align: center;
-  font-size: 10px;
+  margin-top: 5px;
 }
 
-/* WHATSAPP FLUTUANTE */
-
-.whatsapp-float {
-  position: fixed;
-  z-index: 90;
-  right: 20px;
-  bottom: 20px;
+.quantity-controls {
   display: flex;
   align-items: center;
   gap: 9px;
-  padding: 14px 19px;
-  background: var(--green);
-  color: white;
-  border-radius: 50px;
-  box-shadow: 0 8px 25px rgba(0,0,0,.2);
-  font-size: 13px;
+  margin-top: 9px;
+}
+
+.quantity-controls button {
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 9px;
+  background: white;
+  color: var(--red);
   font-weight: 800;
-  transition: transform .25s, box-shadow .25s;
-  animation: float 4s ease-in-out infinite;
 }
 
-.whatsapp-float:hover {
-  transform: translateY(-5px) scale(1.03);
-  box-shadow: 0 12px 30px rgba(0,0,0,.25);
+.cart-item-price {
+  font-weight: 800;
+  color: var(--red);
+  white-space: nowrap;
 }
 
-/* TOAST */
+.cart-bottom {
+  padding: 20px;
+  border-top: 1px solid #e8ddcf;
+  background: white;
+}
 
-.toast {
-  position: fixed;
-  z-index: 300;
-  left: 50%;
-  bottom: 85px;
-  width: max-content;
-  max-width: 90%;
-  padding: 13px 19px;
-  border-radius: 12px;
-  background: #251916;
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 19px;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.checkout-btn {
+  width: 100%;
+  background: #168b56;
   color: white;
-  box-shadow: var(--shadow);
-  font-size: 12px;
-  opacity: 0;
-  pointer-events: none;
-  transform: translate(-50%, 20px);
-  transition: .3s;
+  border: 0;
+  border-radius: 14px;
+  padding: 15px;
+  font-weight: 800;
 }
 
-.toast.show {
-  opacity: 1;
-  transform: translate(-50%, 0);
+.checkout-btn:disabled {
+  opacity: .45;
+  cursor: not-allowed;
 }
 
-/* ANIMAÇÕES AO FAZER SCROLL */
+.cart-note {
+  color: var(--muted);
+  font-size: 11px;
+  text-align: center;
+  margin-top: 10px;
+}
 
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity .7s ease, transform .7s ease;
+  transform: translateY(25px);
+  transition: opacity .65s ease, transform .65s ease;
 }
 
 .reveal.visible {
@@ -1178,170 +827,95 @@ footer {
   transform: translateY(0);
 }
 
-.product.reveal {
-  transition:
-    opacity .6s ease,
-    transform .35s ease,
-    box-shadow .35s ease;
+@keyframes heroEnter {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.product.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.product.reveal.visible:hover {
-  transform: translateY(-8px);
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(25px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes cardEnter {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-9px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
-@keyframes orbit {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* RESPONSIVIDADE */
-
-@media (max-width: 850px) {
-  .nav-links {
-    gap: 12px;
-  }
-
-  .nav-links a {
-    font-size: 12px;
-  }
-
-  .products {
+@media (max-width: 900px) {
+  .product-grid {
     grid-template-columns: repeat(2, minmax(0,1fr));
     gap: 16px;
   }
 
-  .product-image {
-    height: 200px;
+  .product-image-wrap {
+    height: 205px;
   }
 
-  .about-grid {
-    gap: 30px;
+  .location-card {
+    grid-template-columns: 1fr;
   }
 
-  .about-image,
-  .about-image img {
-    min-height: 330px;
-    height: 330px;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
+  .location-visual {
+    min-height: 220px;
   }
 }
 
 @media (max-width: 600px) {
-  .container {
-    width: 91%;
-  }
-
-  .demo-bar {
-    font-size: 9px;
-    letter-spacing: .6px;
-  }
-
-  .navbar {
-    min-height: 67px;
+  .nav {
+    padding: 10px 12px;
     gap: 8px;
+    min-height: 68px;
   }
 
-  .logo {
+  .brand {
+    font-size: 14px;
     gap: 7px;
-    font-size: 13px;
   }
 
-  .logo-icon {
-    width: 34px;
-    height: 34px;
+  .brand-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 19px;
     border-radius: 11px;
-    font-size: 17px;
   }
 
   .nav-links {
     gap: 10px;
-  }
-
-  .nav-links a {
-    font-size: 11px;
-  }
-
-  .cart-button {
-    gap: 5px;
-    padding: 7px 9px;
-    font-size: 11px;
-  }
-
-  .cart-count {
-    width: 21px;
-    height: 21px;
-    font-size: 10px;
-  }
-
-  .hero {
-    min-height: 600px;
-    background-position: center;
-  }
-
-  .hero-inner {
-    padding: 90px 0 110px;
-  }
-
-  .eyebrow {
-    font-size: 10px;
-    letter-spacing: 3px;
-  }
-
-  .hero h1 {
-    font-size: clamp(39px, 10vw, 55px);
-    letter-spacing: -1px;
-    margin: 20px 0;
-  }
-
-  .hero p {
-    font-size: 14px;
-  }
-
-  .btn {
-    min-height: 45px;
-    padding: 12px 15px;
     font-size: 12px;
   }
 
-  .benefit-strip {
-    margin-top: -38px;
+  .cart-nav {
+    gap: 5px;
+    padding: 7px 9px;
+    font-size: 12px;
   }
 
-  .benefit-grid {
+  .cart-count {
+    width: 24px;
+    height: 24px;
+  }
+
+  .hero {
+    min-height: 540px;
+    padding: 70px 19px 95px;
+  }
+
+  .hero h1 {
+    font-size: clamp(39px, 10vw, 54px);
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .benefits {
+    width: calc(100% - 24px);
     border-radius: 17px;
   }
 
   .benefit {
-    padding: 18px 7px;
+    padding: 17px 5px;
   }
 
   .benefit strong {
@@ -1352,184 +926,100 @@ footer {
     font-size: 10px;
   }
 
-  section {
-    padding: 65px 0;
+  .section {
+    padding: 72px 13px;
   }
 
-  .intro {
-    padding-bottom: 50px;
-  }
-
-  .section-heading {
-    margin-bottom: 28px;
-  }
-
-  .products {
-    grid-template-columns: repeat(2, minmax(0,1fr));
+  .product-grid {
     gap: 12px;
   }
 
-  .product {
-    border-radius: 15px;
-  }
-
-  .product-image {
+  .product-image-wrap {
     height: 145px;
   }
 
-  .product-tag {
-    top: 7px;
-    left: 7px;
-    padding: 5px 7px;
-    font-size: 8px;
-  }
-
-  .product-body {
+  .product-info {
     padding: 12px;
   }
 
-  .product h3 {
-    font-size: 13px;
+  .product-title {
+    font-size: 15px;
   }
 
   .product-description {
+    font-size: 12px;
     min-height: 56px;
-    font-size: 10px;
-  }
-
-  .product-bottom {
-    margin-top: 11px;
     margin-bottom: 12px;
   }
 
-  .price {
-    font-size: 16px;
+  .product-price {
+    font-size: 18px;
   }
 
-  .currency {
+  .product-price small {
     font-size: 10px;
   }
 
   .add-btn {
-    width: 35px;
-    height: 35px;
-    flex-basis: 35px;
-    border-radius: 10px;
-    font-size: 21px;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    font-size: 23px;
   }
 
-  .product .btn {
-    min-height: 39px;
-    font-size: 10px;
-    padding: 9px 5px;
+  .add-full {
+    font-size: 11px;
+    padding: 11px 5px;
+  }
+
+  .badge {
+    top: 8px;
+    left: 8px;
+    font-size: 9px;
+    padding: 5px 8px;
+  }
+
+  .search-row {
+    display: block;
+  }
+
+  .result-count {
+    display: block;
+    text-align: right;
+    margin-top: 8px;
   }
 
   .filters {
-    gap: 6px;
+    justify-content: flex-start;
+    gap: 7px;
   }
 
-  .filter {
-    padding: 8px 10px;
-    font-size: 9px;
-  }
-
-  .about-grid,
-  .location-card {
-    grid-template-columns: 1fr;
-  }
-
-  .about-grid {
-    gap: 30px;
-  }
-
-  .about-image,
-  .about-image img {
-    min-height: 280px;
-    height: 280px;
-  }
-
-  .about-stamp {
-    right: 10px;
-    bottom: 12px;
-    padding: 13px;
-  }
-
-  .about-stamp strong {
-    font-size: 13px;
-  }
-
-  .about-stamp span {
-    font-size: 9px;
-  }
-
-  .feature-grid {
-    grid-template-columns: 1fr;
-    gap: 13px;
-  }
-
-  .feature {
-    padding: 23px 18px;
-  }
-
-  .location-visual {
-    min-height: 220px;
+  .filter-btn {
+    padding: 9px 11px;
+    font-size: 11px;
   }
 
   .location-info {
-    padding: 25px;
-  }
-
-  .location-info h3 {
-    font-size: 20px;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    padding: 24px;
   }
 
   .whatsapp-float {
     right: 12px;
     bottom: 12px;
     padding: 12px 15px;
-    font-size: 11px;
-  }
-}
-
-@media (max-width: 360px) {
-  .nav-links {
-    gap: 7px;
+    font-size: 13px;
   }
 
-  .nav-links a {
+  .demo-bar {
     font-size: 10px;
-  }
-
-  .logo {
-    font-size: 11px;
-  }
-
-  .cart-button {
-    padding: 6px;
-    font-size: 10px;
-  }
-
-  .products {
-    gap: 9px;
-  }
-
-  .product-body {
-    padding: 9px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
+  *, *::before, *::after {
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
     transition-duration: .01ms !important;
   }
 
@@ -1544,1051 +1034,774 @@ footer {
 <body>
 
 <div class="demo-bar">
-  Demonstração de restaurante • Menu e pedidos de exemplo
+  DEMONSTRAÇÃO • Menu, preços e encomendas de exemplo
 </div>
 
-<header>
-  <div class="container navbar">
-
-    <a href="#inicio" class="logo">
-      <span class="logo-icon">🍽️</span>
+<header class="header">
+  <nav class="nav">
+    <a class="brand" href="#inicio" aria-label="Sabores da Beira - Início">
+      <span class="brand-icon">🍽️</span>
       <span>Sabores da Beira</span>
     </a>
 
-    <nav class="nav-links" aria-label="Navegação principal">
+    <div class="nav-links">
       <a href="#menu">Menu</a>
       <a href="#sobre">Sobre</a>
-      <button class="cart-button" id="open-cart" type="button">
-        🛒 Carrinho
-        <span class="cart-count" id="cart-count">0</span>
-      </button>
-    </nav>
+    </div>
 
-  </div>
+    <button class="cart-nav" id="openCart" aria-label="Abrir carrinho">
+      🛒 Carrinho
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </nav>
 </header>
 
 <main>
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <div class="eyebrow">Sabor que conquista</div>
+      <h1>Uma experiência <em>deliciosa</em> espera por si.</h1>
+      <p>
+        Descubra as nossas sugestões, escolha os seus pratos favoritos
+        e prepare o pedido de forma simples pelo WhatsApp.
+      </p>
 
-<!-- HERO -->
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-gold">Explorar o menu</a>
+        <button class="btn btn-outline" id="heroCart">🛒 Ver carrinho</button>
+      </div>
 
-<section class="hero" id="inicio">
-  <div class="container hero-inner">
-
-    <span class="eyebrow">Sabor que conquista</span>
-
-    <h1>
-      Uma experiência<br>
-      <em>deliciosa</em> espera por si.
-    </h1>
-
-    <p>
-      Descubra as nossas sugestões, escolha os seus pratos favoritos
-      e prepare o seu pedido de forma simples pelo WhatsApp.
-    </p>
-
-    <div class="hero-actions">
-      <a href="#menu" class="btn btn-gold">Explorar o menu</a>
-      <button class="btn btn-outline" id="hero-cart" type="button">
-        🛒 Ver carrinho
-      </button>
+      <p class="hero-note">
+        Uma experiência digital simples, prática e pensada para si.
+      </p>
     </div>
+  </section>
 
-    <span class="hero-note">
-      Uma experiência digital simples, prática e pensada para si.
-    </span>
-
-  </div>
-</section>
-
-<!-- VANTAGENS NO TOPO -->
-
-<div class="container benefit-strip">
-  <div class="benefit-grid">
-
+  <section class="benefits reveal" aria-label="Vantagens">
     <div class="benefit">
       <strong>Menu organizado</strong>
       <span>Consulte os pratos</span>
     </div>
-
     <div class="benefit">
       <strong>Escolha simples</strong>
       <span>Adicione ao carrinho</span>
     </div>
-
     <div class="benefit">
       <strong>Contacto directo</strong>
       <span>Pelo WhatsApp</span>
     </div>
+  </section>
 
-  </div>
-</div>
-
-<!-- INTRODUÇÃO -->
-
-<section class="intro reveal">
-  <div class="container intro-box">
-
-    <span class="kicker">Bem-vindo</span>
-
-    <h2>Bem-vindo ao Sabores da Beira</h2>
-
-    <div class="gold-line"></div>
-
-    <p>
-      Descubra uma selecção de pratos, consulte os preços e prepare
-      o seu pedido num só lugar. Escolha as suas opções favoritas
-      e entre em contacto pelo WhatsApp.
-    </p>
-
-  </div>
-</section>
-
-<!-- MENU -->
-
-<section class="menu-section" id="menu">
-  <div class="container">
-
-    <div class="section-heading reveal">
-      <span class="kicker">Feito para despertar o apetite</span>
-      <h2>Explore o nosso menu</h2>
-      <div class="gold-line"></div>
+  <section class="section reveal">
+    <div class="section-heading">
+      <div class="eyebrow">Bem-vindo</div>
+      <h2>Bem-vindo ao Sabores da Beira</h2>
       <p>
-        Encontre o seu prato favorito e adicione-o ao carrinho.
+        Explore uma selecção ilustrativa de pratos, refeições,
+        acompanhamentos e sobremesas.
       </p>
     </div>
+  </section>
 
-    <div class="menu-tools reveal">
-
-      <label class="search-box">
-        <span>⌕</span>
-        <input
-          type="search"
-          id="search"
-          placeholder="Pesquisar pratos..."
-          aria-label="Pesquisar pratos">
-      </label>
-
-      <div class="filters" id="filters">
-        <button class="filter active" data-category="Todos">Todos</button>
-        <button class="filter" data-category="Pratos principais">Pratos principais</button>
-        <button class="filter" data-category="Hambúrgueres">Hambúrgueres</button>
-        <button class="filter" data-category="Pizzas">Pizzas</button>
-        <button class="filter" data-category="Acompanhamentos">Acompanhamentos</button>
-        <button class="filter" data-category="Bebidas">Bebidas</button>
-        <button class="filter" data-category="Sobremesas">Sobremesas</button>
+  <section class="menu-section section" id="menu">
+    <div class="menu-inner">
+      <div class="section-heading reveal">
+        <div class="eyebrow">O nosso menu</div>
+        <h2>Escolha os seus favoritos</h2>
+        <p>Pesquise, filtre os produtos e monte o seu pedido.</p>
       </div>
 
-      <div class="result-count" id="result-count" aria-live="polite">
-        12 sugestões disponíveis
-      </div>
-
-    </div>
-
-    <div class="products" id="products">
-
-      <!-- 1 -->
-
-      <article class="product reveal"
-        data-name="Frango Grelhado"
-        data-category="Pratos principais"
-        data-price="450"
-        data-description="Frango grelhado acompanhado de batatas fritas."
-        data-image="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80">
-
-        <div class="product-image">
-          <img src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80"
-            alt="Frango grelhado" loading="lazy">
-          <span class="product-tag">Favorito</span>
+      <div class="menu-tools reveal">
+        <div class="search-row">
+          <input
+            class="search-box"
+            id="searchInput"
+            type="search"
+            placeholder="⌕  Pesquisar pratos..."
+            aria-label="Pesquisar produtos"
+          >
+          <span class="result-count" id="resultCount">A carregar...</span>
         </div>
 
-        <div class="product-body">
-          <h3>🍗 Frango Grelhado</h3>
-          <p class="product-description">Frango grelhado acompanhado de batatas fritas.</p>
-          <div class="product-bottom">
-            <span class="price">450 <span class="currency">MT</span></span>
-            <button class="add-btn" aria-label="Adicionar Frango Grelhado" type="button">+</button>
-          </div>
-          <button class="btn btn-gold quick-add" type="button">Adicionar ao carrinho</button>
-        </div>
-      </article>
-
-      <!-- 2 -->
-
-      <article class="product reveal"
-        data-name="Hambúrguer Completo"
-        data-category="Hambúrgueres"
-        data-price="350"
-        data-description="Hambúrguer com queijo, alface, tomate e molho especial."
-        data-image="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80">
-
-        <div class="product-image">
-          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
-            alt="Hambúrguer completo" loading="lazy">
-          <span class="product-tag">Mais pedido</span>
-        </div>
-
-        <div class="product-body">
-          <h3>🍔 Hambúrguer Completo</h3>
-          <p class="product-description">Queijo, alface, tomate e molho especial.</p>
-          <div class="product-bottom">
-            <span class="price">350 <span class="currency">MT</span></span>
-            <button class="add-btn" aria-label="Adicionar Hambúrguer Completo" type="button">+</button>
-          </div>
-          <button class="btn btn-gold quick-add" type="button">Adicionar ao carrinho</button>
-        </div>
-      </article>
-
-      <!-- 3 -->
-
-      <article class="product reveal"
-        data-name="Pizza Especial"
-        data-category="Pizzas"
-        data-price="500"
-        data-description="Pizza com queijo, tomate e ingredientes seleccionados."
-        data-image="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80">
-
-        <div class="product-image">
-          <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80"
-            alt="Pizza especial" loading="lazy">
-        </div>
-
-        <div class="product-body">
-          <h3>🍕 Pizza Especial</h3>
-          <p class="product-description">Queijo, tomate e ingredientes seleccionados.</p>
-          <div class="product-bottom">
-            <span class="price">500 <span class="currency">MT</span></span>
-            <button class="add-btn" aria-label="Adicionar Pizza Especial" type="button">+</button>
-          </div>
-          <button class="btn btn-gold quick-add" type="button">Adicionar ao carrinho</button>
-        </div>
-      </article>
-
-      <!-- 4 -->
-
-      <article class="product reveal"
-        data-name="Peixe Grelhado"
-        data-category="Pratos principais"
-        data-price="550"
-        data-description="Peixe grelhado com temperos e acompanhamento."
-        data-image="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80">
-
-        <div class="product-image">
-          <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80"
-            alt="Peixe grelhado" loading="lazy">
-          <span class="product-tag">Sugestão</span>
-        </div>
-
-        <div class="product-body">
-          <h3>🐟 Peixe Grelhado</h3>
-          <p class="product-description">Peixe grelhado com temperos e acompanhamento.</p>
-          <div class="product-bottom">
-            <span class="price">550 <span class="currency">MT</span></span>
-            <button class="add-btn" aria-label="Adicionar Peixe Grelhado" type="button">+</button>
-          </div>
-          <button class="btn btn-gold quick-add" type="button">Adicionar ao carrinho</button>
-        </div>
-      </article>
-
-      <!-- 5 -->
-
-      <article class="product reveal"
-        data-name="Espetada de Carne"
-        data-category="Pratos principais"
-        data-price="600"
-        data-description="Espetada de carne grelhada com temperos especiais."
-        data-image="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80">
-
-        <div class="product-image">
-          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80"
-            alt="Carne grelhada" loading="lazy">
-        </div>
-
-        <div class="product-body">
-          <h3>🥩 Espetada de Carne</h3>
-          <p class="product-description">Carne grelhada com temperos especiais.</p>
-          <div class="product-bottom">
-            <span class="price">600 <span class="currency">MT</span></span>
-            <button class="add-btn" aria-label="Adicionar Espetada de Carne" type="button">+</button>
-          </div>
-          <button class="btn btn-gold quick-add" type="button">Adicionar ao carrinho</button>
-        </div>
-      </article>
-
-      <!-- 6 -->
-
-      <article class="product reveal"
-        data-name="Hambúrguer Duplo"
-        data-category="Hambúrgueres"
-        data-price="450"
-        data-description="Hambúrguer duplo com queijo e molho da casa."
-        data-image="https://images.unsplash.com/photo-1553979459-d2229ba7433a?auto=format&fit=crop&w=800&q=80">
-
-        <div class="product-image">
-          <img src="https://images.unsplash.com/photo-1553979459-d2229ba7433a?auto=format&fit=crop&w=800&q=80"
-            alt="Hambúrguer duplo" loading="lazy">
-        </div>
-
-        <div class="product-body">
-          <h3>🍔 Hambúrguer Duplo</h3>
-          <p class="product-description">Hambúrguer duplo com queijo e molho da casa.</p>
-          <div class="product-bottom">
-            <span class="price">450 <span class="currency">MT</span></span>
-            <button class="add-btn" aria-label="Adicionar Hambúrguer Duplo" type="button">+</button>
-          </div>
-          <button class="btn btn-gold quick-add" type="button">Adicionar ao carrinho</button>
-        </div>
-      </article>
-
-      <!-- 7 -->
-
-      <article class="product reveal"
-        data-name="Pizza de Queijo"
-        data-category="Pizzas"
-        data-price="400"
-        data-description="Pizza de queijo com massa e molho de tomate."
-        data-image="https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=800&q=80">
-
-        <div class="product-image">
-          <img src="https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=800&q=80"
-            alt="Pizza de queijo" loading="lazy">
-        </div>
-
-        <div class="product-body">
-          <h3>🧀 Pizza de Queijo</h3>
-          <p class="product-description">Pizza de queijo com massa e molho de tomate.</p>
-          <div class="product-bottom">
-            <span class="price">400 <span class="currency">MT</span></span>
-            <button class="add-btn" aria-label="Adicionar Pizza de Queijo" type="button">+</button>
-          </div>
-          <button class="btn btn-gold quick-add" type="button">Adicionar ao carrinho</button>
-        </div>
-      </article>
-
-      <!-- 8 -->
-
-      <article class="product reveal"
-        data-name="Batatas Fritas"
-        data-category="Acompanhamentos"
-        data-price="150"
-        data-description="Batatas fritas crocantes para acompanhar a sua refeição."
-        data-image="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80">
-
-        <div class="product-image">
-          <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80"
-            alt="Batatas fritas" loading="lazy">
-        </div>
-
-        <div class="product-body">
-          <h3>🍟 Batatas Fritas</h3>
-          <p class="product-description">Batatas fritas crocantes para acompanhar a refeição.</p>
-          <div class="product-bottom">
-            <span class="price">150 <span class="currency">MT</span></span>
-            <button class="add-btn" aria-label="Adicionar Batatas Fritas" type="button">+</button>
-          </div>
-          <button class="btn btn-gold quick-add" type="button">Adicionar ao carrinho</button>
-        </div>
-      </article>
-
-      <!-- 9 -->
-
-      <article class="product reveal"
-        data-name="Salada Fresca"
-        data-category="Acompanhamentos"
-        data-price="180"
-        data-description="Salada fresca com vegetais seleccionados."
-        data-image="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80">
-
-        <div class="product-image">
-          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80"
-            alt="Salada fresca" loading="lazy">
-        </div>
-
-        <div class="product-body">
-          <h3>🥗 Salada Fresca</h3>
-          <p class="product-description">Salada fresca com vegetais seleccionados.</p>
-          <div class="product-bottom">
-            <span class="price">180 <span class="currency">MT</span></span>
-            <button class="add-btn" aria-label="Adicionar Salada Fresca" type="button">+</button>
-          </div>
-          <button class="btn btn-gold quick-add" type="button">Adicionar ao carrinho</button>
-        </div>
-      </article>
-
-      <!-- 10 -->
-
-      <article class="product reveal"
-        data-name="Sumo Natural"
-        data-category="Bebidas"
-        data-price="120"
-        data-description="Sumo natural refrescante. Sabores ilustrativos."
-        data-image="https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=800&q=80">
-
-        <div class="product-image">
-          <img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=800&q=80"
-            alt="Sumo natural" loading="lazy">
-        </div>
-
-        <div class="product-body">
-          <h3>🍹 Sumo Natural</h3>
-          <p class="product-description">Sumo natural refrescante. Sabores ilustrativos.</p>
-          <div class="product-bottom">
-            <span class="price">120 <span class="currency">MT</span></span>
-            <button class="add-btn" aria-label="Adicionar Sumo Natural" type="button">+</button>
-          </div>
-          <button class="btn btn-gold quick-add" type="button">Adicionar ao carrinho</button>
-        </div>
-      </article>
-
-      <!-- 11 -->
-
-      <article class="product reveal"
-        data-name="Água Mineral"
-        data-category="Bebidas"
-        data-price="60"
-        data-description="Água mineral para acompanhar a refeição."
-        data-image="https://images.unsplash.com/photo-1559839914-17aae19cec71?auto=format&fit=crop&w=800&q=80">
-
-        <div class="product-image">
-          <img src="https://images.unsplash.com/photo-1559839914-17aae19cec71?auto=format&fit=crop&w=800&q=80"
-            alt="Água mineral" loading="lazy">
-        </div>
-
-        <div class="product-body">
-          <h3>💧 Água Mineral</h3>
-          <p class="product-description">Água mineral para acompanhar a refeição.</p>
-          <div class="product-bottom">
-            <span class="price">60 <span class="currency">MT</span></span>
-            <button class="add-btn" aria-label="Adicionar Água Mineral" type="button">+</button>
-          </div>
-          <button class="btn btn-gold quick-add" type="button">Adicionar ao carrinho</button>
-        </div>
-      </article>
-
-      <!-- 12 -->
-
-      <article class="product reveal"
-        data-name="Bolo de Chocolate"
-        data-category="Sobremesas"
-        data-price="200"
-        data-description="Fatia de bolo de chocolate para terminar a refeição."
-        data-image="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80">
-
-        <div class="product-image">
-          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80"
-            alt="Bolo de chocolate" loading="lazy">
-          <span class="product-tag">Sobremesa</span>
-        </div>
-
-        <div class="product-body">
-          <h3>🍰 Bolo de Chocolate</h3>
-          <p class="product-description">Fatia de bolo de chocolate para terminar a refeição.</p>
-          <div class="product-bottom">
-            <span class="price">200 <span class="currency">MT</span></span>
-            <button class="add-btn" aria-label="Adicionar Bolo de Chocolate" type="button">+</button>
-          </div>
-          <button class="btn btn-gold quick-add" type="button">Adicionar ao carrinho</button>
-        </div>
-      </article>
-
-      <div class="no-results" id="no-results">
-        <h3>Nenhum prato encontrado</h3>
-        <p>Experimente outro nome ou escolha uma categoria diferente.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- SOBRE -->
-
-<section class="about" id="sobre">
-  <div class="container about-grid">
-
-    <div class="about-image reveal">
-      <img
-        src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=85"
-        alt="Ambiente elegante de restaurante"
-        loading="lazy">
-
-      <div class="about-stamp">
-        <strong>Uma experiência especial</strong>
-        <span>Detalhes que fazem a diferença</span>
-      </div>
-    </div>
-
-    <div class="about-text reveal">
-      <span class="kicker">Mais simples para si</span>
-
-      <h2>Uma experiência pensada para facilitar a sua escolha.</h2>
-
-      <p>
-        Consulte as sugestões do menu, veja os preços e prepare o
-        seu pedido sem precisar de procurar cada informação
-        separadamente.
-      </p>
-
-      <p>
-        Esta demonstração mostra como um restaurante pode organizar
-        a sua apresentação digital e facilitar o contacto com os clientes.
-      </p>
-
-      <div class="about-list">
-        <div><span class="check">✓</span> Menu organizado por categorias</div>
-        <div><span class="check">✓</span> Carrinho com cálculo automático</div>
-        <div><span class="check">✓</span> Pedido preparado para o WhatsApp</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- VANTAGENS -->
-
-<section class="features">
-  <div class="container">
-
-    <div class="section-heading reveal">
-      <span class="kicker">Tudo num só lugar</span>
-      <h2>Uma experiência simples</h2>
-      <div class="gold-line"></div>
-      <p>Informação organizada para tornar a escolha mais fácil.</p>
-    </div>
-
-    <div class="feature-grid">
-
-      <article class="feature reveal">
-        <div class="feature-icon">📖</div>
-        <h3>Menu acessível</h3>
-        <p>Consulte os pratos e os respectivos preços num só lugar.</p>
-      </article>
-
-      <article class="feature reveal">
-        <div class="feature-icon">🛒</div>
-        <h3>Escolha organizada</h3>
-        <p>Adicione produtos ao carrinho e reveja o total do pedido.</p>
-      </article>
-
-      <article class="feature reveal">
-        <div class="feature-icon">📱</div>
-        <h3>Contacto directo</h3>
-        <p>Prepare a mensagem do seu pedido para enviar pelo WhatsApp.</p>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- LOCALIZAÇÃO -->
-
-<section class="location" id="localizacao">
-  <div class="container">
-
-    <div class="section-heading reveal">
-      <span class="kicker">Estamos por perto</span>
-      <h2>Onde nos encontrar</h2>
-      <div class="gold-line"></div>
-      <p>Uma referência de localização para esta demonstração.</p>
-    </div>
-
-    <div class="location-card reveal">
-
-      <div class="location-visual">
-        <div>
-          <div class="location-pin">📍</div>
-          <h3>Beira, Moçambique</h3>
-          <p>Manga</p>
+        <div class="filters" id="filters">
+          <button class="filter-btn active" data-category="Todos">Todos</button>
+          <button class="filter-btn" data-category="Pratos principais">Pratos principais</button>
+          <button class="filter-btn" data-category="Hambúrgueres">Hambúrgueres</button>
+          <button class="filter-btn" data-category="Pizzas">Pizzas</button>
+          <button class="filter-btn" data-category="Combos">Combos</button>
+          <button class="filter-btn" data-category="Acompanhamentos">Acompanhamentos</button>
+          <button class="filter-btn" data-category="Bebidas">Bebidas</button>
+          <button class="filter-btn" data-category="Sobremesas">Sobremesas</button>
         </div>
       </div>
+
+      <div class="product-grid" id="productGrid"></div>
+
+      <div class="empty-state" id="emptyState">
+        Não encontrámos produtos com esse nome. Experimente outra pesquisa.
+      </div>
+    </div>
+  </section>
+
+  <section class="section location-section reveal" id="localizacao">
+    <div class="section-heading">
+      <div class="eyebrow">Onde estamos</div>
+      <h2>Visite-nos na Beira</h2>
+      <p>Consulte a localização ilustrativa desta demonstração.</p>
+    </div>
+
+    <div class="location-card">
+      <div class="location-visual" aria-hidden="true">📍</div>
 
       <div class="location-info">
         <h3>Sabores da Beira</h3>
-
+        <div class="location-pin">📍 Manga, Beira, Moçambique</div>
         <p>
-          <strong>Localização:</strong> Manga, Beira, Moçambique.
+          Um exemplo de como um restaurante pode apresentar
+          a sua localização e facilitar o contacto com os clientes.
         </p>
-
-        <p>
-          Esta é uma localização ilustrativa. O endereço exacto
-          deverá ser confirmado pelo restaurante antes da publicação.
-        </p>
-
-        <a
-          class="btn btn-gold"
-          href="https://www.google.com/maps/search/?api=1&query=Manga%2C+Beira%2C+Mo%C3%A7ambique"
-          target="_blank"
-          rel="noopener noreferrer">
-          📍 Ver zona no mapa
-        </a>
+        <p><strong>Localização ilustrativa:</strong> o endereço exacto deverá ser confirmado pelo proprietário.</p>
+        <a class="btn btn-gold" href="#menu">Consultar menu</a>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CONTACTO -->
+  <section class="about-section" id="sobre">
+    <div class="about-inner reveal">
+      <div class="eyebrow">A nossa experiência</div>
+      <h2>Mais praticidade à mesa.</h2>
+      <p>
+        Este exemplo demonstra como um menu digital pode organizar
+        os produtos, apresentar preços e facilitar a preparação
+        de encomendas através do WhatsApp.
+      </p>
 
-<section class="contact" id="contacto">
-  <div class="container reveal">
-
-    <span class="kicker">Estamos disponíveis</span>
-
-    <h2>Já escolheu os seus favoritos?</h2>
-
-    <p>
-      Reveja o seu carrinho e prepare a mensagem com os produtos
-      escolhidos para entrar em contacto pelo WhatsApp.
-    </p>
-
-    <button class="btn" id="contact-cart" type="button">
-      🛒 Rever o meu carrinho
-    </button>
-
-  </div>
-</section>
-
+      <div class="about-points">
+        <span>🍽️ Menu digital</span>
+        <span>🛒 Carrinho de compras</span>
+        <span>📱 Pedidos pelo WhatsApp</span>
+      </div>
+    </div>
+  </section>
 </main>
 
-<!-- RODAPÉ -->
-
-<footer>
-  <div class="container">
-
-    <div class="footer-grid">
-
-      <div>
-        <div class="footer-title">🍽️ Sabores da Beira</div>
-        <p>Uma demonstração de site para restaurante.</p>
-        <p>Uma experiência digital prática e organizada.</p>
-      </div>
-
-      <div>
-        <div class="footer-title">Navegação</div>
-        <a href="#inicio">Página inicial</a>
-        <a href="#menu">Consultar menu</a>
-        <a href="#sobre">Sobre a demonstração</a>
-      </div>
-
-      <div>
-        <div class="footer-title">Localização ilustrativa</div>
-        <p>📍 Manga, Beira, Moçambique</p>
-        <p>📱 Pedidos através do WhatsApp</p>
-      </div>
-
-    </div>
-
-    <div class="footer-bottom">
-      <p>
-        Demonstração com produtos e preços fictícios.
-        © <span id="year"></span> Sabores da Beira.
-      </p>
-    </div>
-
-  </div>
+<footer class="footer">
+  <strong>🍽️ Sabores da Beira</strong>
+  <p>Demonstração de website para restaurante.</p>
+  <p>Produtos, preços e localização sujeitos a confirmação.</p>
 </footer>
 
-<!-- BOTÃO WHATSAPP -->
-
-<a
-  class="whatsapp-float"
-  id="whatsapp-float"
-  href="#contacto"
-  aria-label="Contactar pelo WhatsApp">
+<button class="whatsapp-float" id="whatsappButton">
   WhatsApp 💬
-</a>
-
-<!-- CARRINHO -->
-
-<div class="cart-overlay" id="cart-overlay"></div>
-
-<aside
-  class="cart-panel"
-  id="cart-panel"
-  aria-label="Carrinho de compras"
-  aria-hidden="true">
-
-  <div class="cart-header">
-    <h2>O seu carrinho</h2>
-    <button class="close-cart" id="close-cart" aria-label="Fechar carrinho" type="button">×</button>
-  </div>
-
-  <div class="cart-items" id="cart-items">
-    <div class="cart-empty">
-      <span>🛒</span>
-      <h3>O carrinho está vazio</h3>
-      <p>Adicione os seus pratos favoritos para começar.</p>
-    </div>
-  </div>
-
-  <div class="cart-footer">
-    <div class="total-row">
-      <span>Total estimado</span>
-      <strong id="cart-total">0 MT</strong>
-    </div>
-
-    <button class="btn btn-gold" id="checkout" type="button">
-      Preparar pedido no WhatsApp
-    </button>
-
-    <button class="btn" id="continue-shopping"
-      style="background:#f2e8dd;color:#51382c"
-      type="button">
-      Continuar a escolher
-    </button>
-
-    <small>O pedido só será enviado depois de confirmar no WhatsApp.</small>
-  </div>
-
-</aside>
+</button>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<aside class="cart-panel" id="cartPanel" aria-label="Carrinho de compras">
+  <div class="cart-header">
+    <h2>O seu carrinho</h2>
+    <button class="close-cart" id="closeCart" aria-label="Fechar carrinho">×</button>
+  </div>
+
+  <div class="cart-items" id="cartItems"></div>
+
+  <div class="cart-bottom">
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cartTotal">0 MT</span>
+    </div>
+
+    <button class="checkout-btn" id="checkoutButton" disabled>
+      Finalizar pelo WhatsApp
+    </button>
+
+    <p class="cart-note">
+      Demonstração: confirme os produtos e preços antes de utilizar comercialmente.
+    </p>
+  </div>
+</aside>
+
 <script>
-(function () {
-  "use strict";
+"use strict";
 
-  /*
-    IMPORTANTE:
-    Confirma o número abaixo antes de usar esta demonstração.
+/*
+  SABORES DA BEIRA — DEMONSTRAÇÃO
 
-    Formato internacional:
-    código do país + número, apenas algarismos.
-    Não incluir o sinal +, espaços ou traços.
-  */
+  Os produtos, preços e a localização são ilustrativos.
+  As imagens são carregadas de um serviço externo.
+*/
 
-  const WHATSAPP_NUMBER = "258858829688";
+// Altera este número se quiseres utilizar outro contacto.
+// Formato internacional, sem o sinal +.
+const WHATSAPP_NUMBER = "258858829688";
 
-  const cart = {};
-
-  const products = Array.from(
-    document.querySelectorAll(".product")
-  );
-
-  const cartPanel = document.getElementById("cart-panel");
-  const cartOverlay = document.getElementById("cart-overlay");
-  const cartItems = document.getElementById("cart-items");
-  const cartCount = document.getElementById("cart-count");
-  const cartTotal = document.getElementById("cart-total");
-  const resultCount = document.getElementById("result-count");
-  const noResults = document.getElementById("no-results");
-  const search = document.getElementById("search");
-
-  let activeCategory = "Todos";
-  let toastTimer;
-
-  function formatMT(value) {
-    return value.toLocaleString("pt-PT") + " MT";
+const products = [
+  {
+    id: 1,
+    name: "Frango Grelhado",
+    category: "Pratos principais",
+    price: 450,
+    emoji: "🍗",
+    badge: "Favorito",
+    description: "Frango grelhado com temperos especiais e acompanhamento.",
+    image: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=850&q=80"
+  },
+  {
+    id: 2,
+    name: "Peixe Grelhado",
+    category: "Pratos principais",
+    price: 550,
+    emoji: "🐟",
+    badge: "Sugestão",
+    description: "Peixe grelhado acompanhado de vegetais e guarnição.",
+    image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=850&q=80"
+  },
+  {
+    id: 3,
+    name: "Espetada de Carne",
+    category: "Pratos principais",
+    price: 600,
+    emoji: "🥩",
+    badge: "",
+    description: "Carne grelhada, temperos aromáticos e acompanhamentos.",
+    image: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=850&q=80"
+  },
+  {
+    id: 4,
+    name: "Frango Frito",
+    category: "Pratos principais",
+    price: 450,
+    emoji: "🍗",
+    badge: "Crocante",
+    description: "Frango frito servido com molho e acompanhamento.",
+    image: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=850&q=80"
+  },
+  {
+    id: 5,
+    name: "Hambúrguer Clássico",
+    category: "Hambúrgueres",
+    price: 350,
+    emoji: "🍔",
+    badge: "",
+    description: "Hambúrguer com salada fresca, queijo e molho da casa.",
+    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=850&q=80"
+  },
+  {
+    id: 6,
+    name: "Hambúrguer Duplo",
+    category: "Hambúrgueres",
+    price: 450,
+    emoji: "🍔",
+    badge: "Mais recheado",
+    description: "Dois hambúrgueres, queijo, vegetais e molho especial.",
+    image: "https://images.unsplash.com/photo-1553979459-d2229ba7433a?auto=format&fit=crop&w=850&q=80"
+  },
+  {
+    id: 7,
+    name: "Hambúrguer com Batatas",
+    category: "Hambúrgueres",
+    price: 500,
+    emoji: "🍔",
+    badge: "",
+    description: "Hambúrguer clássico acompanhado de batatas fritas.",
+    image: "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=850&q=80"
+  },
+  {
+    id: 8,
+    name: "Cheeseburger",
+    category: "Hambúrgueres",
+    price: 400,
+    emoji: "🍔",
+    badge: "",
+    description: "Hambúrguer com queijo derretido e molho especial.",
+    image: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=850&q=80"
+  },
+  {
+    id: 9,
+    name: "Pizza Especial",
+    category: "Pizzas",
+    price: 500,
+    emoji: "🍕",
+    badge: "Popular",
+    description: "Pizza com queijo, tomate e ingredientes seleccionados.",
+    image: "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=850&q=80"
+  },
+  {
+    id: 10,
+    name: "Pizza de Frango",
+    category: "Pizzas",
+    price: 550,
+    emoji: "🍕",
+    badge: "",
+    description: "Pizza de frango com queijo e ervas aromáticas.",
+    image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=850&q=80"
+  },
+  {
+    id: 11,
+    name: "Pizza de Queijo",
+    category: "Pizzas",
+    price: 450,
+    emoji: "🍕",
+    badge: "",
+    description: "Pizza com queijo derretido e molho de tomate.",
+    image: "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=850&q=80"
+  },
+  {
+    id: 12,
+    name: "Pizza Vegetariana",
+    category: "Pizzas",
+    price: 500,
+    emoji: "🍕",
+    badge: "",
+    description: "Pizza com vegetais variados e queijo.",
+    image: "https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=850&q=80"
+  },
+  {
+    id: 13,
+    name: "Combo Família",
+    category: "Combos",
+    price: 1650,
+    emoji: "🍱",
+    badge: "Para partilhar",
+    description: "Selecção ilustrativa de refeições para toda a família.",
+    image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=850&q=80"
+  },
+  {
+    id: 14,
+    name: "Combo Pizza + Hambúrgueres",
+    category: "Combos",
+    price: 390,
+    emoji: "🍕",
+    badge: "Combo especial",
+    description: "Uma pizza, dois hambúrgueres e batatas fritas. Preço ilustrativo.",
+    image: "https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?auto=format&fit=crop&w=850&q=80"
+  },
+  {
+    id: 15,
+    name: "Menu de Festa",
+    category: "Combos",
+    price: 3300,
+    emoji: "🎉",
+    badge: "Para eventos",
+    description: "Exemplo de um menu para festas e pequenos eventos.",
+    image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=850&q=80"
+  },
+  {
+    id: 16,
+    name: "Batatas Fritas",
+    category: "Acompanhamentos",
+    price: 150,
+    emoji: "🍟",
+    badge: "",
+    description: "Batatas fritas douradas e crocantes.",
+    image: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=850&q=80"
+  },
+  {
+    id: 17,
+    name: "Salada Fresca",
+    category: "Acompanhamentos",
+    price: 180,
+    emoji: "🥗",
+    badge: "",
+    description: "Salada fresca com vegetais variados.",
+    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=850&q=80"
+  },
+  {
+    id: 18,
+    name: "Arroz Temperado",
+    category: "Acompanhamentos",
+    price: 150,
+    emoji: "🍚",
+    badge: "",
+    description: "Arroz preparado com temperos seleccionados.",
+    image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=850&q=80"
+  },
+  {
+    id: 19,
+    name: "Sumo Natural",
+    category: "Bebidas",
+    price: 120,
+    emoji: "🥤",
+    badge: "Refrescante",
+    description: "Sumo de fruta. Sabores disponíveis a confirmar.",
+    image: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=850&q=80"
+  },
+  {
+    id: 20,
+    name: "Água Mineral",
+    category: "Bebidas",
+    price: 60,
+    emoji: "💧",
+    badge: "",
+    description: "Água mineral engarrafada.",
+    image: "https://images.unsplash.com/photo-1559839914-17aae19cec71?auto=format&fit=crop&w=850&q=80"
+  },
+  {
+    id: 21,
+    name: "Refrigerante",
+    category: "Bebidas",
+    price: 100,
+    emoji: "🥤",
+    badge: "",
+    description: "Refrigerante servido fresco.",
+    image: "https://images.unsplash.com/photo-1581636625402-29b2a704ef13?auto=format&fit=crop&w=850&q=80"
+  },
+  {
+    id: 22,
+    name: "Bolo de Aniversário",
+    category: "Sobremesas",
+    price: 1650,
+    emoji: "🎂",
+    badge: "Ocasiões especiais",
+    description: "Exemplo de bolo decorado para celebrações.",
+    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=850&q=80"
+  },
+  {
+    id: 23,
+    name: "Bolo de Chocolate",
+    category: "Sobremesas",
+    price: 250,
+    emoji: "🍰",
+    badge: "",
+    description: "Fatia de bolo de chocolate com cobertura.",
+    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=850&q=80"
+  },
+  {
+    id: 24,
+    name: "Gelado",
+    category: "Sobremesas",
+    price: 150,
+    emoji: "🍨",
+    badge: "",
+    description: "Sobremesa gelada. Sabores a confirmar.",
+    image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=850&q=80"
   }
+];
 
-  function whatsappLink(message) {
-    return "https://wa.me/" +
-      WHATSAPP_NUMBER +
-      "?text=" +
-      encodeURIComponent(message);
-  }
+const productGrid = document.getElementById("productGrid");
+const searchInput = document.getElementById("searchInput");
+const resultCount = document.getElementById("resultCount");
+const emptyState = document.getElementById("emptyState");
+const cartPanel = document.getElementById("cartPanel");
+const cartOverlay = document.getElementById("cartOverlay");
+const cartItemsElement = document.getElementById("cartItems");
+const cartCountElement = document.getElementById("cartCount");
+const cartTotalElement = document.getElementById("cartTotal");
+const checkoutButton = document.getElementById("checkoutButton");
+const toast = document.getElementById("toast");
 
-  function showToast(message) {
-    const toast = document.getElementById("toast");
+let activeCategory = "Todos";
+let cart = {};
+let toastTimer;
 
-    toast.textContent = message;
-    toast.classList.add("show");
+function formatPrice(value) {
+  return value.toLocaleString("pt-PT") + " MT";
+}
 
-    clearTimeout(toastTimer);
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add("show");
 
-    toastTimer = setTimeout(function () {
-      toast.classList.remove("show");
-    }, 2400);
-  }
+  clearTimeout(toastTimer);
 
-  function openCart() {
-    cartPanel.classList.add("open");
-    cartOverlay.classList.add("open");
-    cartPanel.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
-  }
+  toastTimer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2400);
+}
 
-  function closeCart() {
-    cartPanel.classList.remove("open");
-    cartOverlay.classList.remove("open");
-    cartPanel.setAttribute("aria-hidden", "true");
-    document.body.style.overflow = "";
-  }
+function renderProducts() {
+  const search = searchInput.value.trim().toLocaleLowerCase("pt");
 
-  document.getElementById("open-cart").addEventListener("click", openCart);
-  document.getElementById("hero-cart").addEventListener("click", openCart);
-  document.getElementById("contact-cart").addEventListener("click", openCart);
-  document.getElementById("close-cart").addEventListener("click", closeCart);
-  document.getElementById("continue-shopping").addEventListener("click", closeCart);
-  cartOverlay.addEventListener("click", closeCart);
+  const filtered = products.filter(product => {
+    const matchesCategory =
+      activeCategory === "Todos" ||
+      product.category === activeCategory;
 
-  document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") {
-      closeCart();
-    }
+    const searchableText =
+      (product.name + " " + product.description + " " + product.category)
+        .toLocaleLowerCase("pt");
+
+    return matchesCategory && searchableText.includes(search);
   });
 
-  function addProduct(productElement) {
-    const name = productElement.dataset.name;
-    const price = Number(productElement.dataset.price);
-    const description = productElement.dataset.description;
-    const image = productElement.dataset.image;
+  productGrid.innerHTML = "";
 
-    if (!cart[name]) {
-      cart[name] = {
-        name: name,
-        price: price,
-        description: description,
-        image: image,
-        quantity: 0
-      };
-    }
+  resultCount.textContent =
+    filtered.length + (filtered.length === 1 ? " produto" : " produtos");
 
-    cart[name].quantity += 1;
+  emptyState.style.display = filtered.length ? "none" : "block";
 
-    renderCart();
-    showToast(name + " adicionado ao carrinho.");
-  }
+  filtered.forEach((product, index) => {
+    const card = document.createElement("article");
+    card.className = "product-card";
+    card.style.animationDelay = Math.min(index * 35, 350) + "ms";
 
-  products.forEach(function (product) {
-    const addButton = product.querySelector(".add-btn");
-    const quickAdd = product.querySelector(".quick-add");
+    const badge = product.badge
+      ? `<span class="badge">${product.badge}</span>`
+      : "";
 
-    addButton.addEventListener("click", function () {
-      addProduct(product);
-    });
+    card.innerHTML = `
+      <div class="product-image-wrap">
+        ${badge}
+        <img
+          class="product-image"
+          src="${product.image}"
+          alt="${product.name}"
+          loading="lazy"
+        >
+      </div>
 
-    quickAdd.addEventListener("click", function () {
-      addProduct(product);
-    });
-  });
+      <div class="product-info">
+        <h3 class="product-title">${product.emoji} ${product.name}</h3>
+        <p class="product-description">${product.description}</p>
 
-  function changeQuantity(name, amount) {
-    if (!cart[name]) return;
+        <div class="product-bottom">
+          <div class="product-price">
+            ${formatPrice(product.price)}
+          </div>
 
-    cart[name].quantity += amount;
-
-    if (cart[name].quantity <= 0) {
-      delete cart[name];
-    }
-
-    renderCart();
-  }
-
-  function removeProduct(name) {
-    delete cart[name];
-    renderCart();
-    showToast("Produto removido do carrinho.");
-  }
-
-  function renderCart() {
-    const items = Object.values(cart);
-
-    const quantity = items.reduce(function (sum, item) {
-      return sum + item.quantity;
-    }, 0);
-
-    const total = items.reduce(function (sum, item) {
-      return sum + item.price * item.quantity;
-    }, 0);
-
-    cartCount.textContent = quantity;
-    cartTotal.textContent = formatMT(total);
-
-    if (items.length === 0) {
-      cartItems.innerHTML = `
-        <div class="cart-empty">
-          <span>🛒</span>
-          <h3>O carrinho está vazio</h3>
-          <p>Adicione os seus pratos favoritos para começar.</p>
+          <button
+            class="add-btn"
+            data-add="${product.id}"
+            aria-label="Adicionar ${product.name} ao carrinho"
+          >+</button>
         </div>
-      `;
 
-      return;
-    }
+        <button class="add-full" data-add="${product.id}">
+          Adicionar ao carrinho
+        </button>
+      </div>
+    `;
 
-    cartItems.innerHTML = "";
+    const image = card.querySelector(".product-image");
 
-    items.forEach(function (item) {
-      const row = document.createElement("div");
-      row.className = "cart-item";
+    // Se uma imagem externa falhar, substitui-a por uma imagem
+    // de reserva válida, em vez de deixar um espaço partido.
+    image.addEventListener("error", function () {
+      if (this.dataset.fallback === "1") return;
 
-      const image = document.createElement("img");
-      image.src = item.image;
-      image.alt = item.name;
-
-      const info = document.createElement("div");
-
-      const title = document.createElement("h4");
-      title.textContent = item.name;
-
-      const price = document.createElement("div");
-      price.className = "cart-item-price";
-      price.textContent = formatMT(item.price * item.quantity);
-
-      const quantityRow = document.createElement("div");
-      quantityRow.className = "quantity-row";
-
-      const minus = document.createElement("button");
-      minus.type = "button";
-      minus.textContent = "−";
-      minus.setAttribute("aria-label", "Diminuir quantidade de " + item.name);
-
-      minus.addEventListener("click", function () {
-        changeQuantity(item.name, -1);
-      });
-
-      const count = document.createElement("span");
-      count.textContent = item.quantity;
-      count.style.fontWeight = "800";
-
-      const plus = document.createElement("button");
-      plus.type = "button";
-      plus.textContent = "+";
-      plus.setAttribute("aria-label", "Aumentar quantidade de " + item.name);
-
-      plus.addEventListener("click", function () {
-        changeQuantity(item.name, 1);
-      });
-
-      const remove = document.createElement("button");
-      remove.type = "button";
-      remove.className = "remove-item";
-      remove.textContent = "Remover";
-
-      remove.addEventListener("click", function () {
-        removeProduct(item.name);
-      });
-
-      quantityRow.append(minus, count, plus, remove);
-      info.append(title, price, quantityRow);
-      row.append(image, info);
-      cartItems.appendChild(row);
+      this.dataset.fallback = "1";
+      this.src =
+        "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=850&q=80";
     });
+
+    productGrid.appendChild(card);
+  });
+}
+
+function addToCart(productId) {
+  const product = products.find(item => item.id === productId);
+
+  if (!product) return;
+
+  if (!cart[productId]) {
+    cart[productId] = {
+      product: product,
+      quantity: 0
+    };
   }
 
-  document.getElementById("checkout").addEventListener("click", function () {
-    const items = Object.values(cart);
-
-    if (items.length === 0) {
-      showToast("Adicione pelo menos um produto ao carrinho.");
-      return;
-    }
-
-    const total = items.reduce(function (sum, item) {
-      return sum + item.price * item.quantity;
-    }, 0);
-
-    let message = "Olá! Gostaria de fazer um pedido no Sabores da Beira.\n\n";
-
-    items.forEach(function (item) {
-      message +=
-        "• " + item.name +
-        " x" + item.quantity +
-        " — " + formatMT(item.price * item.quantity) +
-        "\n";
-    });
-
-    message += "\nTotal estimado: " + formatMT(total);
-    message += "\n\nGostaria de confirmar a disponibilidade e os detalhes do pedido.";
-
-    window.open(whatsappLink(message), "_blank", "noopener,noreferrer");
-  });
-
-  /* PESQUISA E CATEGORIAS */
-
-  function filterProducts() {
-    const term = search.value.trim().toLocaleLowerCase("pt-PT");
-    let visible = 0;
-
-    products.forEach(function (product) {
-      const name = product.dataset.name.toLocaleLowerCase("pt-PT");
-      const description = product.dataset.description.toLocaleLowerCase("pt-PT");
-      const category = product.dataset.category;
-
-      const matchesSearch =
-        name.includes(term) || description.includes(term);
-
-      const matchesCategory =
-        activeCategory === "Todos" || category === activeCategory;
-
-      const show = matchesSearch && matchesCategory;
-
-      product.style.display = show ? "flex" : "none";
-
-      if (show) visible++;
-    });
-
-    noResults.style.display = visible === 0 ? "block" : "none";
-
-    resultCount.textContent =
-      visible + (visible === 1
-        ? " produto encontrado"
-        : " produtos encontrados");
-  }
-
-  search.addEventListener("input", filterProducts);
-
-  document.querySelectorAll(".filter").forEach(function (button) {
-    button.addEventListener("click", function () {
-      document.querySelectorAll(".filter").forEach(function (filter) {
-        filter.classList.remove("active");
-      });
-
-      button.classList.add("active");
-      activeCategory = button.dataset.category;
-
-      filterProducts();
-    });
-  });
-
-  /* WHATSAPP GERAL */
-
-  document.getElementById("whatsapp-float").addEventListener("click", function (event) {
-    event.preventDefault();
-
-    const message =
-      "Olá! Visitei a demonstração do site Sabores da Beira e gostaria de obter informações.";
-
-    window.open(whatsappLink(message), "_blank", "noopener,noreferrer");
-  });
-
-  /* ANIMAÇÕES AO FAZER SCROLL */
-
-  const revealElements = document.querySelectorAll(".reveal");
-
-  if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.08
-    });
-
-    revealElements.forEach(function (element, index) {
-      if (element.classList.contains("product")) {
-        element.style.transitionDelay = (index % 3) * 70 + "ms";
-      }
-
-      observer.observe(element);
-    });
-  } else {
-    revealElements.forEach(function (element) {
-      element.classList.add("visible");
-    });
-  }
-
-  /* ANO AUTOMÁTICO */
-
-  document.getElementById("year").textContent =
-    new Date().getFullYear();
+  cart[productId].quantity++;
 
   renderCart();
-  filterProducts();
+  showToast(product.name + " adicionado ao carrinho!");
+}
 
-})();
+function changeQuantity(productId, change) {
+  if (!cart[productId]) return;
+
+  cart[productId].quantity += change;
+
+  if (cart[productId].quantity <= 0) {
+    delete cart[productId];
+  }
+
+  renderCart();
+}
+
+function getCartQuantity() {
+  return Object.values(cart).reduce(
+    (sum, item) => sum + item.quantity,
+    0
+  );
+}
+
+function getCartTotal() {
+  return Object.values(cart).reduce(
+    (sum, item) => sum + item.product.price * item.quantity,
+    0
+  );
+}
+
+function renderCart() {
+  const entries = Object.entries(cart);
+
+  cartCountElement.textContent = getCartQuantity();
+  cartTotalElement.textContent = formatPrice(getCartTotal());
+  checkoutButton.disabled = entries.length === 0;
+
+  if (entries.length === 0) {
+    cartItemsElement.innerHTML = `
+      <div class="cart-empty">
+        <div style="font-size:48px;margin-bottom:12px">🛒</div>
+        <strong>O seu carrinho está vazio.</strong>
+        <p style="margin-top:8px">Escolha os seus pratos favoritos no menu.</p>
+      </div>
+    `;
+    return;
+  }
+
+  cartItemsElement.innerHTML = entries.map(([id, item]) => `
+    <div class="cart-item">
+      <div>
+        <h4>${item.product.emoji} ${item.product.name}</h4>
+        <p>${formatPrice(item.product.price)} por unidade</p>
+
+        <div class="quantity-controls">
+          <button data-change="${id}" data-delta="-1" aria-label="Diminuir quantidade">−</button>
+          <strong>${item.quantity}</strong>
+          <button data-change="${id}" data-delta="1" aria-label="Aumentar quantidade">+</button>
+        </div>
+      </div>
+
+      <div class="cart-item-price">
+        ${formatPrice(item.product.price * item.quantity)}
+      </div>
+    </div>
+  `).join("");
+}
+
+function openCart() {
+  cartPanel.classList.add("open");
+  cartOverlay.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeCart() {
+  cartPanel.classList.remove("open");
+  cartOverlay.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function sendWhatsApp(message) {
+  const number = WHATSAPP_NUMBER.replace(/\D/g, "");
+
+  if (!number) {
+    showToast("O contacto do WhatsApp ainda não foi configurado.");
+    return;
+  }
+
+  const url =
+    "https://wa.me/" + number + "?text=" + encodeURIComponent(message);
+
+  window.open(url, "_blank", "noopener,noreferrer");
+}
+
+function checkout() {
+  const entries = Object.values(cart);
+
+  if (entries.length === 0) {
+    showToast("Adicione produtos antes de continuar.");
+    return;
+  }
+
+  let message = "Olá! Gostaria de fazer uma encomenda de demonstração no Sabores da Beira.%0A";
+  message = decodeURIComponent(message);
+
+  message += "\n\nProdutos:\n";
+
+  entries.forEach(item => {
+    message +=
+      "- " + item.product.name +
+      " x" + item.quantity +
+      " — " + formatPrice(item.product.price * item.quantity) +
+      "\n";
+  });
+
+  message += "\nTotal ilustrativo: " + formatPrice(getCartTotal());
+  message += "\n\nPor favor, confirme a disponibilidade e os preços.";
+
+  sendWhatsApp(message);
+}
+
+productGrid.addEventListener("click", event => {
+  const button = event.target.closest("[data-add]");
+
+  if (!button) return;
+
+  addToCart(Number(button.dataset.add));
+});
+
+cartItemsElement.addEventListener("click", event => {
+  const button = event.target.closest("[data-change]");
+
+  if (!button) return;
+
+  changeQuantity(
+    Number(button.dataset.change),
+    Number(button.dataset.delta)
+  );
+});
+
+document.getElementById("filters").addEventListener("click", event => {
+  const button = event.target.closest("[data-category]");
+
+  if (!button) return;
+
+  activeCategory = button.dataset.category;
+
+  document.querySelectorAll(".filter-btn").forEach(filter => {
+    filter.classList.toggle("active", filter === button);
+  });
+
+  renderProducts();
+});
+
+searchInput.addEventListener("input", renderProducts);
+
+document.getElementById("openCart").addEventListener("click", openCart);
+document.getElementById("heroCart").addEventListener("click", openCart);
+document.getElementById("closeCart").addEventListener("click", closeCart);
+cartOverlay.addEventListener("click", closeCart);
+
+checkoutButton.addEventListener("click", checkout);
+
+document.getElementById("whatsappButton").addEventListener("click", () => {
+  sendWhatsApp(
+    "Olá! Gostaria de saber mais sobre o menu do Sabores da Beira."
+  );
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closeCart();
+});
+
+// Animações de entrada ao fazer scroll.
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12
+  });
+
+  document.querySelectorAll(".reveal").forEach(element => {
+    observer.observe(element);
+  });
+} else {
+  document.querySelectorAll(".reveal").forEach(element => {
+    element.classList.add("visible");
+  });
+}
+
+renderProducts();
+renderCart();
 </script>
 
 </body>
